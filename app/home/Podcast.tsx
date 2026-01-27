@@ -1,6 +1,5 @@
-// components/Sections/Podcast.tsx
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { bebasNeue, poppins } from "../utils/constants";
 
@@ -100,60 +99,38 @@ const Podcast = () => {
   };
 
   return (
-    <section className="relative py-20 lg:py-28 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      {/* Background Elements */}
+    <section className="relative py-12 lg:py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+      {/* Background Elements - Simplified */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            rotate: 360,
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-20 -left-24 w-72 h-72 bg-purple-100 rounded-full opacity-40 blur-3xl"
-        />
-        <motion.div
-          animate={{
-            rotate: -360,
-            scale: [1.1, 1, 1.1],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute bottom-20 -right-24 w-96 h-96 bg-blue-100 rounded-full opacity-30 blur-3xl"
-        />
+        <div className="absolute top-20 -left-24 w-48 h-48 bg-purple-100/30 rounded-full opacity-20 blur-xl" />
+        <div className="absolute bottom-20 -right-24 w-64 h-64 bg-blue-100/30 rounded-full opacity-15 blur-xl" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="text-center mb-16 lg:mb-20"
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-50px" }}
+          className="text-center mb-12 lg:mb-16"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-purple-100 border border-purple-200 mb-6"
+            transition={{ delay: 0.1, duration: 0.3 }}
+            className="inline-flex items-center px-3 py-1.5 rounded-full bg-purple-100 border border-purple-200 mb-4"
           >
-            <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-2" />
+            <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-1.5" />
             <span
-              className={`text-purple-700 text-sm font-medium ${poppins.className}`}
+              className={`text-purple-700 text-xs font-medium ${poppins.className}`}
             >
               Hope Podcast Series
             </span>
           </motion.div>
 
           <h2
-            className={`text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight ${bebasNeue.className}`}
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 ${bebasNeue.className}`}
           >
             Voices of
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 block">
@@ -162,24 +139,24 @@ const Podcast = () => {
           </h2>
 
           <p
-            className={`text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed ${poppins.className}`}
+            className={`text-base sm:text-lg text-gray-600 max-w-2xl mx-auto ${poppins.className}`}
           >
-            Dive deeper into transformative conversations about hope,
-            resilience, and personal growth
+            Transformative conversations about hope, resilience, and personal
+            growth
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Podcast Episodes */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-4"
           >
             <h3
-              className={`text-2xl lg:text-3xl font-bold text-gray-900 mb-6 ${bebasNeue.className}`}
+              className={`text-xl lg:text-2xl font-bold text-gray-900 mb-4 ${bebasNeue.className}`}
             >
               Latest Episodes
             </h3>
@@ -187,28 +164,24 @@ const Podcast = () => {
             {episodes.map((episode, index) => (
               <motion.div
                 key={episode.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
-                whileHover={{
-                  y: -5,
-                  transition: { duration: 0.3 },
-                }}
-                className={`group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer border-2 ${
+                transition={{ delay: 0.3 + index * 0.05, duration: 0.3 }}
+                className={`group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 overflow-hidden cursor-pointer border ${
                   activeEpisode === index
-                    ? "border-purple-500 shadow-xl"
+                    ? "border-purple-500 shadow-lg"
                     : "border-transparent hover:border-purple-200"
                 }`}
                 onClick={() => setActiveEpisode(index)}
               >
-                <div className="p-6">
-                  <div className="flex items-start space-x-4">
+                <div className="p-4">
+                  <div className="flex items-start space-x-3">
                     {/* Episode Cover */}
                     <div className="flex-shrink-0 relative">
-                      <div className="w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-400 rounded-xl shadow-lg overflow-hidden">
+                      <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg shadow-md overflow-hidden">
                         <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
                           <svg
-                            className="w-8 h-8 text-white"
+                            className="w-5 h-5 text-white"
                             fill="currentColor"
                             viewBox="0 0 24 24"
                           >
@@ -216,47 +189,38 @@ const Podcast = () => {
                           </svg>
                         </div>
                       </div>
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center">
-                        <svg
-                          className="w-3 h-3 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-                        </svg>
-                      </div>
                     </div>
 
                     {/* Episode Info */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-start justify-between mb-1.5">
                         <h4
-                          className={`font-semibold text-gray-900 group-hover:text-purple-700 transition-colors duration-300 line-clamp-1 ${poppins.className}`}
+                          className={`font-semibold text-gray-900 group-hover:text-purple-700 transition-colors duration-200 line-clamp-1 text-sm sm:text-base ${poppins.className}`}
                         >
                           {episode.title}
                         </h4>
                         <span
-                          className={`text-sm text-purple-600 font-medium bg-purple-100 px-2 py-1 rounded-full ${poppins.className}`}
+                          className={`text-xs text-purple-600 font-medium bg-purple-100 px-1.5 py-0.5 rounded-full flex-shrink-0 ml-2 ${poppins.className}`}
                         >
                           {episode.duration}
                         </span>
                       </div>
 
                       <p
-                        className={`text-gray-600 text-sm leading-relaxed mb-3 line-clamp-2 ${poppins.className}`}
+                        className={`text-gray-600 text-xs leading-relaxed mb-2 line-clamp-2 ${poppins.className}`}
                       >
                         {episode.description}
                       </p>
 
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-2">
                           <span
-                            className={`text-sm text-gray-500 ${poppins.className}`}
+                            className={`text-xs text-gray-500 ${poppins.className}`}
                           >
-                            {episode.listens} listens
+                            {episode.listens}
                           </span>
                           <span
-                            className={`text-sm text-gray-500 ${poppins.className}`}
+                            className={`text-xs text-gray-500 ${poppins.className}`}
                           >
                             {episode.date}
                           </span>
@@ -264,19 +228,19 @@ const Podcast = () => {
 
                         {/* Topics */}
                         <div className="flex space-x-1">
-                          {episode.topics.slice(0, 2).map((topic, i) => (
+                          {episode.topics.slice(0, 1).map((topic, i) => (
                             <span
                               key={i}
-                              className={`text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full ${poppins.className}`}
+                              className={`text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded-full ${poppins.className}`}
                             >
                               {topic}
                             </span>
                           ))}
-                          {episode.topics.length > 2 && (
+                          {episode.topics.length > 1 && (
                             <span
-                              className={`text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full ${poppins.className}`}
+                              className={`text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded-full ${poppins.className}`}
                             >
-                              +{episode.topics.length - 2}
+                              +{episode.topics.length - 1}
                             </span>
                           )}
                         </div>
@@ -284,87 +248,73 @@ const Podcast = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Active Indicator */}
-                {activeEpisode === index && (
-                  <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500 w-full" />
-                )}
               </motion.div>
             ))}
           </motion.div>
 
           {/* Episode Details & Comments */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6"
           >
             {/* Current Episode Player */}
-            <div className="bg-white rounded-3xl shadow-xl border border-purple-100 overflow-hidden">
-              <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6 lg:p-8 text-white">
+            <div className="bg-white rounded-xl lg:rounded-2xl shadow-md border border-purple-100 overflow-hidden">
+              <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-4 lg:p-6 text-white">
                 <h3
-                  className={`text-2xl lg:text-3xl font-bold mb-2 ${bebasNeue.className}`}
+                  className={`text-xl lg:text-2xl font-bold mb-1 ${bebasNeue.className}`}
                 >
                   {episodes[activeEpisode].title}
                 </h3>
                 <p
-                  className={`text-purple-100 leading-relaxed ${poppins.className}`}
+                  className={`text-purple-100 leading-relaxed text-sm ${poppins.className}`}
                 >
                   {episodes[activeEpisode].description}
                 </p>
               </div>
 
-              <div className="p-6 lg:p-8">
+              <div className="p-4 lg:p-6">
                 {/* Audio Player */}
-                <div className="bg-gray-100 rounded-2xl p-6 mb-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-4">
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center shadow-lg"
-                      >
+                <div className="bg-gray-50 rounded-xl p-4 mb-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-3">
+                      <button className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center shadow-md">
                         <svg
-                          className="w-6 h-6 text-white ml-1"
+                          className="w-5 h-5 text-white ml-0.5"
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >
                           <path d="M8 5v14l11-7z" />
                         </svg>
-                      </motion.button>
+                      </button>
                       <div>
                         <p
-                          className={`text-gray-600 text-sm ${poppins.className}`}
+                          className={`text-gray-600 text-xs ${poppins.className}`}
                         >
                           Now Playing
                         </p>
                         <p
-                          className={`font-semibold text-gray-900 ${poppins.className}`}
+                          className={`font-semibold text-gray-900 text-sm ${poppins.className}`}
                         >
                           {episodes[activeEpisode].title}
                         </p>
                       </div>
                     </div>
                     <span
-                      className={`text-purple-600 font-semibold ${poppins.className}`}
+                      className={`text-purple-600 font-semibold text-sm ${poppins.className}`}
                     >
                       {episodes[activeEpisode].duration}
                     </span>
                   </div>
 
                   {/* Progress Bar */}
-                  <div className="w-full bg-gray-300 rounded-full h-2 mb-2">
-                    <motion.div
-                      initial={{ width: "0%" }}
-                      animate={{ width: "35%" }}
-                      transition={{ duration: 1 }}
-                      className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full"
-                    />
+                  <div className="w-full bg-gray-300 rounded-full h-1.5 mb-1.5">
+                    <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-1.5 rounded-full w-1/3" />
                   </div>
 
-                  <div className="flex justify-between text-sm text-gray-500">
+                  <div className="flex justify-between text-xs text-gray-500">
                     <span className={poppins.className}>12:45</span>
                     <span className={poppins.className}>
                       {episodes[activeEpisode].duration}
@@ -373,17 +323,17 @@ const Podcast = () => {
                 </div>
 
                 {/* Topics */}
-                <div className="mb-6">
+                <div className="mb-4">
                   <h4
-                    className={`font-semibold text-gray-900 mb-3 ${poppins.className}`}
+                    className={`font-semibold text-gray-900 mb-2 text-sm ${poppins.className}`}
                   >
                     Topics Covered
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {episodes[activeEpisode].topics.map((topic, index) => (
                       <span
                         key={index}
-                        className={`bg-purple-100 text-purple-700 px-3 py-2 rounded-full text-sm font-medium ${poppins.className}`}
+                        className={`bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs font-medium ${poppins.className}`}
                       >
                         {topic}
                       </span>
@@ -392,39 +342,39 @@ const Podcast = () => {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 mb-6">
+                <div className="grid grid-cols-3 gap-3 mb-4">
                   <div className="text-center">
                     <div
-                      className={`text-2xl font-bold text-gray-900 ${bebasNeue.className}`}
+                      className={`text-lg font-bold text-gray-900 ${bebasNeue.className}`}
                     >
                       {episodes[activeEpisode].listens}
                     </div>
                     <div
-                      className={`text-gray-600 text-sm ${poppins.className}`}
+                      className={`text-gray-600 text-xs ${poppins.className}`}
                     >
                       Listens
                     </div>
                   </div>
                   <div className="text-center">
                     <div
-                      className={`text-2xl font-bold text-gray-900 ${bebasNeue.className}`}
+                      className={`text-lg font-bold text-gray-900 ${bebasNeue.className}`}
                     >
                       {comments.length}
                     </div>
                     <div
-                      className={`text-gray-600 text-sm ${poppins.className}`}
+                      className={`text-gray-600 text-xs ${poppins.className}`}
                     >
                       Comments
                     </div>
                   </div>
                   <div className="text-center">
                     <div
-                      className={`text-2xl font-bold text-gray-900 ${bebasNeue.className}`}
+                      className={`text-lg font-bold text-gray-900 ${bebasNeue.className}`}
                     >
                       4.9★
                     </div>
                     <div
-                      className={`text-gray-600 text-sm ${poppins.className}`}
+                      className={`text-gray-600 text-xs ${poppins.className}`}
                     >
                       Rating
                     </div>
@@ -434,85 +384,74 @@ const Podcast = () => {
             </div>
 
             {/* Comments Section */}
-            <div className="bg-white rounded-3xl shadow-xl border border-purple-100 overflow-hidden">
-              <div className="p-6 lg:p-8">
+            <div className="bg-white rounded-xl lg:rounded-2xl shadow-md border border-purple-100 overflow-hidden">
+              <div className="p-4 lg:p-6">
                 <h4
-                  className={`text-xl font-bold text-gray-900 mb-6 ${bebasNeue.className}`}
+                  className={`text-lg font-bold text-gray-900 mb-4 ${bebasNeue.className}`}
                 >
                   Listener Comments
                 </h4>
 
                 {/* Add Comment */}
-                <div className="mb-6">
+                <div className="mb-4">
                   <textarea
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="Share your thoughts about this episode..."
-                    className={`w-full h-24 p-4 border border-gray-300 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${poppins.className}`}
+                    className={`w-full h-20 p-3 border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-transparent text-sm ${poppins.className}`}
                   />
-                  <div className="flex justify-end mt-3">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                  <div className="flex justify-end mt-2">
+                    <button
                       onClick={addComment}
                       disabled={!newComment.trim()}
-                      className={`px-6 py-3 rounded-xl font-semibold ${
+                      className={`px-4 py-2 rounded-lg font-semibold text-sm ${
                         newComment.trim()
-                          ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
+                          ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md"
                           : "bg-gray-300 text-gray-500 cursor-not-allowed"
                       } ${poppins.className}`}
                     >
                       Post Comment
-                    </motion.button>
+                    </button>
                   </div>
                 </div>
 
                 {/* Comments List */}
-                <div className="space-y-4 max-h-96 overflow-y-auto">
-                  <AnimatePresence>
-                    {comments.map((comment, index) => (
-                      <motion.div
-                        key={comment.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="bg-gray-50 rounded-2xl p-4"
-                      >
-                        <div className="flex justify-between items-start mb-2">
-                          <div>
-                            <p
-                              className={`font-semibold text-gray-900 ${poppins.className}`}
-                            >
-                              {comment.name}
-                            </p>
-                            <p
-                              className={`text-gray-500 text-sm ${poppins.className}`}
-                            >
-                              {comment.time}
-                            </p>
-                          </div>
-                          <button className="flex items-center space-x-1 text-gray-500 hover:text-purple-600 transition-colors">
-                            <svg
-                              className="w-4 h-4"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                            </svg>
-                            <span className={`text-sm ${poppins.className}`}>
-                              {comment.likes}
-                            </span>
-                          </button>
+                <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
+                  {comments.map((comment) => (
+                    <div key={comment.id} className="bg-gray-50 rounded-xl p-3">
+                      <div className="flex justify-between items-start mb-1.5">
+                        <div>
+                          <p
+                            className={`font-semibold text-gray-900 text-sm ${poppins.className}`}
+                          >
+                            {comment.name}
+                          </p>
+                          <p
+                            className={`text-gray-500 text-xs ${poppins.className}`}
+                          >
+                            {comment.time}
+                          </p>
                         </div>
-                        <p
-                          className={`text-gray-700 leading-relaxed ${poppins.className}`}
-                        >
-                          {comment.comment}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
+                        <button className="flex items-center space-x-1 text-gray-500 hover:text-purple-600 transition-colors">
+                          <svg
+                            className="w-3.5 h-3.5"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                          </svg>
+                          <span className={`text-xs ${poppins.className}`}>
+                            {comment.likes}
+                          </span>
+                        </button>
+                      </div>
+                      <p
+                        className={`text-gray-700 leading-relaxed text-sm ${poppins.className}`}
+                      >
+                        {comment.comment}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

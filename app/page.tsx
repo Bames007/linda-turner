@@ -14,15 +14,33 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Hero />
-      <MotivationalQuote />
-      <Videos />
-      <Stories />
-      <NeedHelp />
-      <LiveStream />
-      <UpcomingEvents />
-      <Podcast />
-      <ContactUs />
+      <section id="home">
+        <Hero />
+      </section>
+      <section id="quote">
+        <MotivationalQuote />
+      </section>
+      <section id="videos">
+        <Videos />
+      </section>
+      <section id="stories">
+        <Stories />
+      </section>
+      <section id="help">
+        <NeedHelp />
+      </section>
+      <section id="live">
+        <LiveStream />
+      </section>
+      <section id="events">
+        <UpcomingEvents />
+      </section>
+      <section id="podcast">
+        <Podcast />
+      </section>
+      <section id="contact">
+        <ContactUs />
+      </section>
       <Footer />
     </>
   );

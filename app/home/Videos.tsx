@@ -1,7 +1,7 @@
 // components/Sections/Videos.tsx
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { bebasNeue, poppins } from "../utils/constants";
 
 const Videos = () => {
@@ -9,82 +9,79 @@ const Videos = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoProgress, setVideoProgress] = useState(0);
 
-  const videos = [
-    {
-      id: "video1",
-      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-      title: "The Power of Hope in Difficult Times",
-      description:
-        "Discover how to find hope and strength when facing life's biggest challenges in this powerful keynote speech.",
-      duration: "24:16",
-      views: "125K",
-      date: "2024",
-      category: "Keynote Speech",
-      thumbnail: "/images/video-thumb-1.jpg",
-    },
-    {
-      id: "video2",
-      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-      title: "Transforming Pain into Purpose",
-      description:
-        "Learn the transformative process of turning personal struggles into meaningful purpose and impact.",
-      duration: "18:42",
-      views: "89K",
-      date: "2024",
-      category: "Workshop",
-      thumbnail: "/images/video-thumb-2.jpg",
-    },
-    {
-      id: "video3",
-      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-      title: "Awakening Your Inner Strength",
-      description:
-        "Unlock the incredible power within you to overcome obstacles and achieve your dreams.",
-      duration: "32:05",
-      views: "156K",
-      date: "2023",
-      category: "Motivational Talk",
-      thumbnail: "/images/video-thumb-3.jpg",
-    },
-    {
-      id: "video4",
-      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-      title: "The Resilience Revolution",
-      description:
-        "Join the movement of building unshakeable resilience in an ever-changing world.",
-      duration: "28:34",
-      views: "203K",
-      date: "2023",
-      category: "Keynote Speech",
-      thumbnail: "/images/video-thumb-4.jpg",
-    },
-    {
-      id: "video5",
-      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-      title: "Finding Light in Darkness",
-      description:
-        "Practical strategies for maintaining hope and positivity during life's darkest moments.",
-      duration: "21:17",
-      views: "167K",
-      date: "2024",
-      category: "Inspirational Talk",
-      thumbnail: "/images/video-thumb-5.jpg",
-    },
-    {
-      id: "video6",
-      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-      title: "The Hope Mindset",
-      description:
-        "Cultivate a mindset of hope that transforms how you approach challenges and opportunities.",
-      duration: "26:48",
-      views: "142K",
-      date: "2024",
-      category: "Training Session",
-      thumbnail: "/images/video-thumb-6.jpg",
-    },
-  ];
+  const videos = useMemo(
+    () => [
+      {
+        id: "video1",
+        youtubeId: "dQw4w9WgXcQ",
+        title: "The Power of Hope in Difficult Times",
+        description:
+          "Discover how to find hope and strength when facing life's biggest challenges in this powerful keynote speech.",
+        duration: "24:16",
+        views: "125K",
+        date: "2024",
+        category: "Keynote Speech",
+      },
+      {
+        id: "video2",
+        youtubeId: "dQw4w9WgXcQ",
+        title: "Transforming Pain into Purpose",
+        description:
+          "Learn the transformative process of turning personal struggles into meaningful purpose and impact.",
+        duration: "18:42",
+        views: "89K",
+        date: "2024",
+        category: "Workshop",
+      },
+      {
+        id: "video3",
+        youtubeId: "dQw4w9WgXcQ",
+        title: "Awakening Your Inner Strength",
+        description:
+          "Unlock the incredible power within you to overcome obstacles and achieve your dreams.",
+        duration: "32:05",
+        views: "156K",
+        date: "2023",
+        category: "Motivational Talk",
+      },
+      {
+        id: "video4",
+        youtubeId: "dQw4w9WgXcQ",
+        title: "The Resilience Revolution",
+        description:
+          "Join the movement of building unshakeable resilience in an ever-changing world.",
+        duration: "28:34",
+        views: "203K",
+        date: "2023",
+        category: "Keynote Speech",
+      },
+      {
+        id: "video5",
+        youtubeId: "dQw4w9WgXcQ",
+        title: "Finding Light in Darkness",
+        description:
+          "Practical strategies for maintaining hope and positivity during life's darkest moments.",
+        duration: "21:17",
+        views: "167K",
+        date: "2024",
+        category: "Inspirational Talk",
+      },
+      {
+        id: "video6",
+        youtubeId: "dQw4w9WgXcQ",
+        title: "The Hope Mindset",
+        description:
+          "Cultivate a mindset of hope that transforms how you approach challenges and opportunities.",
+        duration: "26:48",
+        views: "142K",
+        date: "2024",
+        category: "Training Session",
+      },
+    ],
+    [],
+  );
 
-  // Simulate video progress for demo
+  // Optimized video progress simulation
   useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
@@ -93,69 +90,45 @@ const Videos = () => {
             setIsPlaying(false);
             return 0;
           }
-          return prev + 1;
+          return prev + 2;
         });
-      }, 100);
+      }, 200);
       return () => clearInterval(interval);
     }
   }, [isPlaying]);
 
-  const openYouTube = () => {
-    window.open("https://www.youtube.com/c/YourChannelName", "_blank"); // Replace with actual channel
-  };
+  const openYouTube = useCallback(() => {
+    window.open("https://www.youtube.com/c/YourChannelName", "_blank");
+  }, []);
 
-  const playVideo = (index: number) => {
+  const playVideo = useCallback((index: number) => {
     setActiveVideo(index);
     setIsPlaying(true);
     setVideoProgress(0);
-  };
+  }, []);
 
   return (
     <section className="relative py-20 lg:py-28 bg-gradient-to-b from-purple-50 to-white overflow-hidden">
-      {/* Animated Background Elements */}
+      {/* Optimized Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            rotate: 360,
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute -top-48 -right-48 w-96 h-96 bg-gradient-to-r from-purple-200 to-pink-200 rounded-full opacity-20 blur-3xl"
-        />
-        <motion.div
-          animate={{
-            rotate: -360,
-            scale: [1.1, 1, 1.1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute -bottom-48 -left-48 w-96 h-96 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full opacity-20 blur-3xl"
-        />
-
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(#000_1px,transparent_1px),linear-gradient(90deg,#000_1px,transparent_1px)] bg-[size:64px_64px]" />
+        {/* Reduced animation complexity */}
+        <div className="absolute -top-48 -right-48 w-96 h-96 bg-gradient-to-r from-purple-200 to-pink-200 rounded-full opacity-20 blur-3xl" />
+        <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full opacity-20 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-16 lg:mb-20"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
             className="inline-flex items-center px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 shadow-sm mb-6"
           >
             <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-2" />
@@ -186,9 +159,9 @@ const Videos = () => {
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 mb-12 lg:mb-16">
           {/* Featured Video Player */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
             className="relative"
           >
@@ -204,8 +177,8 @@ const Videos = () => {
                     {/* Simulated Video Player */}
                     <div className="w-full h-full bg-black flex items-center justify-center">
                       <motion.div
-                        animate={{ scale: [1, 1.02, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        animate={{ scale: [1, 1.01, 1] }}
+                        transition={{ duration: 3, repeat: Infinity }}
                         className="text-center"
                       >
                         <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mb-4 mx-auto shadow-2xl">
@@ -231,21 +204,21 @@ const Videos = () => {
                         className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
                         initial={{ width: "0%" }}
                         animate={{ width: `${videoProgress}%` }}
-                        transition={{ duration: 0.1 }}
+                        transition={{ duration: 0.2 }}
                       />
                     </div>
                   </motion.div>
                 ) : (
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="absolute inset-0 cursor-pointer"
+                  <motion.button
+                    whileHover={{ scale: 1.01 }}
+                    className="absolute inset-0 cursor-pointer w-full"
                     onClick={() => playVideo(activeVideo)}
                   >
                     {/* Thumbnail */}
                     <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
                       <div className="text-center">
                         <motion.div
-                          whileHover={{ scale: 1.1 }}
+                          whileHover={{ scale: 1.05 }}
                           className="w-20 h-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mb-4 mx-auto shadow-2xl"
                         >
                           <svg
@@ -263,7 +236,7 @@ const Videos = () => {
                         </p>
                       </div>
                     </div>
-                  </motion.div>
+                  </motion.button>
                 )}
 
                 {/* Video Badge */}
@@ -286,10 +259,10 @@ const Videos = () => {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeVideo}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
                   >
                     <h3
                       className={`text-2xl lg:text-3xl font-bold text-gray-900 mb-4 leading-tight ${bebasNeue.className}`}
@@ -302,7 +275,7 @@ const Videos = () => {
                       {videos[activeVideo].description}
                     </p>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                       <div className="flex items-center space-x-6">
                         <div className="flex items-center">
                           <svg
@@ -339,7 +312,7 @@ const Videos = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => playVideo(activeVideo)}
-                        className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold flex items-center"
+                        className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center sm:justify-start w-full sm:w-auto"
                       >
                         <svg
                           className="w-5 h-5 text-white mr-2"
@@ -349,13 +322,7 @@ const Videos = () => {
                           <path d="M8 5v14l11-7z" />
                         </svg>
                         <span className={poppins.className}>
-                          {isPlaying &&
-                          activeVideo ===
-                            videos.findIndex(
-                              (v) => v.id === videos[activeVideo].id
-                            )
-                            ? "Playing"
-                            : "Play Video"}
+                          {isPlaying ? "Playing" : "Play Video"}
                         </span>
                       </motion.button>
                     </div>
@@ -363,41 +330,24 @@ const Videos = () => {
                 </AnimatePresence>
               </div>
             </div>
-
-            {/* Floating Elements */}
-            <motion.div
-              animate={{
-                y: [0, -20, 0],
-                rotate: [0, 5, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg z-20"
-            />
           </motion.div>
 
           {/* Video Grid */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6"
           >
             {videos.map((video, index) => (
               <motion.div
                 key={video.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
-                whileHover={{
-                  y: -8,
-                  transition: { duration: 0.3 },
-                }}
-                className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer border-2 ${
+                transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
+                whileHover={{ y: -4 }}
+                className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer border-2 ${
                   activeVideo === index
                     ? "border-purple-500 shadow-xl"
                     : "border-transparent hover:border-purple-200"
@@ -411,7 +361,7 @@ const Videos = () => {
                 <div className="relative aspect-video bg-gradient-to-br from-gray-300 to-gray-400 overflow-hidden">
                   {/* Play Indicator */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-4 transition-all duration-300 ${
+                    className={`absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-4 transition-all duration-200 ${
                       activeVideo === index
                         ? "opacity-100"
                         : "opacity-0 group-hover:opacity-100"
@@ -443,11 +393,7 @@ const Videos = () => {
                   {/* Active Indicator */}
                   {activeVideo === index && (
                     <div className="absolute top-3 left-3">
-                      <motion.div
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                      />
+                      <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse" />
                     </div>
                   )}
                 </div>
@@ -455,7 +401,7 @@ const Videos = () => {
                 {/* Video Info */}
                 <div className="p-4">
                   <h4
-                    className={`font-semibold text-gray-900 mb-2 line-clamp-2 leading-tight group-hover:text-purple-700 transition-colors duration-300 ${poppins.className}`}
+                    className={`font-semibold text-gray-900 mb-2 line-clamp-2 leading-tight group-hover:text-purple-700 transition-colors duration-200 ${poppins.className}`}
                   >
                     {video.title}
                   </h4>
@@ -468,17 +414,14 @@ const Videos = () => {
                         video.category === "Keynote Speech"
                           ? "bg-purple-100 text-purple-700"
                           : video.category === "Workshop"
-                          ? "bg-pink-100 text-pink-700"
-                          : "bg-blue-100 text-blue-700"
+                            ? "bg-pink-100 text-pink-700"
+                            : "bg-blue-100 text-blue-700"
                       } ${poppins.className}`}
                     >
                       {video.category}
                     </span>
                   </div>
                 </div>
-
-                {/* Hover Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500 rounded-2xl" />
               </motion.div>
             ))}
           </motion.div>
@@ -486,16 +429,16 @@ const Videos = () => {
 
         {/* YouTube CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
           viewport={{ once: true }}
           className="text-center"
         >
           <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 lg:p-12 text-white shadow-2xl shadow-purple-200 max-w-4xl mx-auto">
             <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6"
             >
               <svg
@@ -520,13 +463,10 @@ const Videos = () => {
             </p>
 
             <motion.button
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 20px 40px -10px rgba(255, 255, 255, 0.3)",
-              }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={openYouTube}
-              className="bg-white text-purple-600 px-8 py-4 rounded-xl font-semibold text-lg shadow-lg flex items-center mx-auto"
+              className="bg-white text-purple-600 px-8 py-4 rounded-xl font-semibold text-lg shadow-lg flex items-center mx-auto hover:bg-gray-50 transition-colors"
             >
               <svg
                 className="w-6 h-6 mr-3"
@@ -538,14 +478,9 @@ const Videos = () => {
               <span className={poppins.className}>Visit YouTube Channel</span>
             </motion.button>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.6 }}
-              className={`text-purple-200 text-sm mt-6 ${poppins.className}`}
-            >
+            <p className={`text-purple-200 text-sm mt-6 ${poppins.className}`}>
               50K+ subscribers and growing
-            </motion.p>
+            </p>
           </div>
         </motion.div>
       </div>
