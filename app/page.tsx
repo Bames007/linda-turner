@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Header from "./home/Header";
 import Hero from "./home/Hero";
 import Stories from "./home/Stories";
