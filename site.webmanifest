@@ -1,0 +1,148 @@
+{
+    "name": "The Linda Initiative | Igniting Hope Through Words",
+    "short_name": "Linda Initiative",
+    "description": "Linda Turner transforms lives through inspirational speaking that awakens hope, empowers change, and creates lasting impact.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#8B5CF6",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "en-US",
+    "dir": "ltr",
+    "categories": [
+        "education",
+        "entertainment",
+        "lifestyle",
+        "personalization"
+    ],
+    "screenshots": [
+        {
+            "src": "/images/screenshots/mobile-1.jpg",
+            "sizes": "390x844",
+            "type": "image/jpeg",
+            "form_factor": "narrow",
+            "label": "Homepage mobile view"
+        },
+        {
+            "src": "/images/screenshots/desktop-1.jpg",
+            "sizes": "1920x1080",
+            "type": "image/jpeg",
+            "form_factor": "wide",
+            "label": "Homepage desktop view"
+        },
+        {
+            "src": "/images/screenshots/mobile-2.jpg",
+            "sizes": "390x844",
+            "type": "image/jpeg",
+            "form_factor": "narrow",
+            "label": "Inspirational quotes section"
+        }
+    ],
+    "icons": [
+        {
+            "src": "/icons/icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/icons/icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/icons/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/icons/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/icons/icon-152x152.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/icons/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/icons/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Book Linda to Speak",
+            "short_name": "Book Now",
+            "description": "Book Linda Turner for your next event",
+            "url": "/contact",
+            "icons": [
+                {
+                    "src": "/icons/shortcut-book.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                }
+            ]
+        },
+        {
+            "name": "Watch Inspirational Talks",
+            "short_name": "Watch Talks",
+            "description": "View Linda's powerful keynote speeches",
+            "url": "/videos",
+            "icons": [
+                {
+                    "src": "/icons/shortcut-videos.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                }
+            ]
+        },
+        {
+            "name": "Daily Inspiration",
+            "short_name": "Quotes",
+            "description": "Get your daily dose of hope and motivation",
+            "url": "/quotes",
+            "icons": [
+                {
+                    "src": "/icons/shortcut-quotes.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                }
+            ]
+        }
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "iarc_rating_id": "",
+    "features": [
+        "Cross Platform",
+        "fast",
+        "simple",
+        "Offline Capabilities"
+    ]
+}
